@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'fresher/index.html' %}
+{% block body_block %}
+<div class="container">
+<h1>Create Resume</h1>
+    <div class="row">
+        <div class="col-6">
+            <form method="post" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {{form.as_p}}
+                 <input type="submit" value="Create" class="btn btn-outline-success">
+            </form>
+        </div>
+        <div class="col-6">
+            </div>
+    </div>
+</div>
+<hr>
+<table  class="table table-striped centre">
+    <tr>
+        <td>Email</td>
+        <td>Password</td>
+        <td>Full_Name</td>
+        <td>DOB</td>
+        <td>Last_Degree</td>
+        <td>Profile_Picture</td>
+        <td>ACTION</td>
+        <td>ACTION</td>
+        <td>ACTION</td>
+    </tr>
+    {% for item in obj %}
+    <tr>
+        <td>{{item.Email}}</td>
+        <td>{{item.Password}}</td>
+        <td>{{item.Full_Name}}</td>
+        <td>{{item.DOB}}</td>
+        <td>{{item.Last_Degree}}</td>
+        <td><img src="{{item.Profile_Picture.url}}"></td>
+        <td><a href="{% url 'editresume' item.id %}" class="btn btn-success">Edit</a> </td>
+        <td><a href="{% url 'viewresume' item.id %}" class="btn btn-secondary">View</a> </td>
+        <td><a href="{% url 'deleteresume' item.id %}" class="btn btn-danger">Delete</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
