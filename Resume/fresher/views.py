@@ -49,7 +49,7 @@ def logOut(request):
 def resume(request):
     form = ResumeForm(initial={"user": request.user})
     context = {"form": form}
-    obj = Resume.objects.all()
+    obj = Resume.objects.filter(user=request.user)
     context["obj"] = obj
     if request.method == 'POST':
         form = ResumeForm(initial={"user": request.user}, data=request.POST, files=request.FILES)
@@ -61,7 +61,7 @@ def resume(request):
 
 @login_required(login_url="loginPage")
 def editResume(request, pk):
-    obj = Resume.objects.get(id=pk)
+    obj = Resume.objects.get(user=request.user, id=pk)
     form = ResumeForm(instance=obj)
     context = {"edit": form}
     if request.method == 'POST':
@@ -91,3 +91,7 @@ def listResume(request):
     obj = Resume.objects.all()
     context = {"list": obj}
     return render(request, "fresher/listresume.html", context)
+
+
+def contact(request):
+    return render(request, "fresher/contact.html")

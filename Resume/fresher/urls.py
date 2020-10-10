@@ -1,6 +1,6 @@
 from django.urls import path
 from fresher.views import home, registration, loginPage, resume, editResume, viewResume, deleteResume, logOut, \
-    listResume
+    listResume, contact
 
 urlpatterns = [
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('deleteresume/<int:pk>', deleteResume, name="deleteresume"),
     path("listresume", listResume, name="listresume"),
     path("logOut", logOut, name="logoutPage"),
+    path("contact", contact, name="contact"),
 
 ]

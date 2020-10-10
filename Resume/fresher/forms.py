@@ -30,7 +30,7 @@ class ResumeForm(ModelForm):
         fields = "__all__"
         widgets = {
             'Email': forms.TextInput(attrs={'class': 'form-control'}),
-            'Password': forms.PasswordInput(),
+            'Password': forms.TextInput(attrs={'class': 'form-control'}), #if PasswordInput() - Editform will not display password.
             'Full_Name': forms.TextInput(attrs={'class': 'form-control'}),
             'DOB': forms.DateInput(format='%d-%m-%Y', attrs={'class': 'myDateClass',
                                                              'placeholder': 'dd-mm-YYYY'}),
